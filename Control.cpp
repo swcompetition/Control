@@ -1,6 +1,6 @@
 #include "Control.h"
 
-Control::Control(string& opcode) {
+Control::Control(string opcode) {
     if (opcode.length() != 6) {
         cout << "OPCode its length should be 6." << endl;
     }
