@@ -17,6 +17,7 @@ class Control {
 private:
     bool opcode_bits[OPCODE_BITS_CTR];
     bool shamt_bits[SHAMT_BITS_CTR];
+    string function_code;
     bool is_branch;
     bool reg_dest;
     bool reg_write;
@@ -26,11 +27,12 @@ private:
     bool mem_read;
     bool mem_to_reg;
     bool shamt_signal;
+    bool shamt_right;
     string bool_to_str(bool* array, int size);
     void initSignal();
 
 public:
-    Control(string opcode, string shamtcode);
+    Control(string opcode, string shamtcode, string functioncode);
     bool getBranch();
     bool getRegDest();
     bool getRegWrite();
@@ -40,6 +42,7 @@ public:
     bool getMemRead();
     bool getMemToReg();
     bool getShamtSignal();
+    bool getShamtRight();
     int conv_bin_dec_idx(bool* bits, int& bitidx);
     void conv_dec_to_bin(int target, bool return_value[]);
 };

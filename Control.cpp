@@ -1,6 +1,7 @@
 #include "Control.h"
 
-Control::Control(string opcode, string shamtcode) {
+Control::Control(string opcode, string shamtcode, string functioncode) {
+    this->function_code = functioncode;
     if (opcode.length() != 6) {
         cout << "OPCode its length should be 6." << endl;
     }
@@ -23,6 +24,16 @@ void Control::initSignal() {
             shamt_signal = true; // it is shift operation
         }
     }
+
+    if (shamt_signal) {
+        if (function_code == "000010") {
+            // Its shamt-right signal
+            shamt_right = true;
+        } else {
+            shamt_right = false;
+        }
+    }
+
     if (opcode_str == RTYPE_OP) {
         cout << "RType detected" << endl;
         reg_dest = true;
@@ -79,6 +90,10 @@ bool Control::getMemToReg() {
 
 bool Control::getShamtSignal() {
     return this->shamt_signal;
+}
+
+bool Control::getShamtRight() {
+    return this->shamt_right;
 }
 
 /**
