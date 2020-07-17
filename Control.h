@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -35,4 +36,6 @@ public:
     bool getMemWrite();
     bool getMemRead();
     bool getMemToReg();
+    int conv_bin_dec_idx(bool* bits, int& bitidx);
+    void conv_dec_to_bin(int target, bool return_value[]);
 };

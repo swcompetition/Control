@@ -66,3 +66,38 @@ bool Control::getMemRead() {
 bool Control::getMemToReg() {
     return this->mem_to_reg;
 }
+
+/**
+ * For converting some bits to idx value
+ * binaries --> decimal
+ */
+int Control::conv_bin_dec_idx(bool* bits, int& bitidx) {
+    int ret_val = 0;
+
+    for (int i = 0; i < bitidx; i++) {
+        ret_val += pow(2, (bitidx - 1) - i) * bits[i];
+    }
+    return ret_val;
+}
+
+void Control::conv_dec_to_bin(int target, bool return_value[]) {
+    const int max_reg = 32;
+    for (int i = 0; i < max_reg; i++) {
+        return_value[i] = 0;
+    }
+    int target_value = target; // Decimal value of register
+
+    string tmp_str = "";
+    while (target_value != 0) {
+        tmp_str += (target_value % 2) + '0';
+        target_value /= 2;
+    }
+    int str_iter = tmp_str.length() - 1;
+    for (int i = 0; i < max_reg; i++) {
+        if (i < max_reg - tmp_str.length()) {
+            return_value[i] = 0;
+        } else {
+            return_value[i] = tmp_str.at(str_iter--) - '0';
+        }
+    }
+}
