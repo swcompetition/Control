@@ -6,6 +6,7 @@ using namespace std;
 
 #define OPCODE_BITS_CTR 6
 #define ALU_OP_BITS 2
+#define SHAMT_BITS_CTR 5
 
 #define RTYPE_OP "000000"
 #define LW_OP "100011"
@@ -15,6 +16,7 @@ using namespace std;
 class Control {
 private:
     bool opcode_bits[OPCODE_BITS_CTR];
+    bool shamt_bits[SHAMT_BITS_CTR];
     bool is_branch;
     bool reg_dest;
     bool reg_write;
@@ -23,11 +25,12 @@ private:
     bool mem_write;
     bool mem_read;
     bool mem_to_reg;
+    bool shamt_signal;
     string bool_to_str(bool* array, int size);
     void initSignal();
 
 public:
-    Control(string opcode);
+    Control(string opcode, string shamtcode);
     bool getBranch();
     bool getRegDest();
     bool getRegWrite();
@@ -36,6 +39,7 @@ public:
     bool getMemWrite();
     bool getMemRead();
     bool getMemToReg();
+    bool getShamtSignal();
     int conv_bin_dec_idx(bool* bits, int& bitidx);
     void conv_dec_to_bin(int target, bool return_value[]);
 };

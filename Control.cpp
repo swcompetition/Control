@@ -1,18 +1,28 @@
 #include "Control.h"
 
-Control::Control(string opcode) {
+Control::Control(string opcode, string shamtcode) {
     if (opcode.length() != 6) {
         cout << "OPCode its length should be 6." << endl;
     }
 
     for (int i = 0; i < OPCODE_BITS_CTR; i++) {
         opcode_bits[i] = opcode.at(i) - '0';
+        if (i < SHAMT_BITS_CTR) {
+            shamt_bits[i] = shamtcode.at(i) - '0';
+        }
     }
+
     initSignal();
 }
 
 void Control::initSignal() {
     string opcode_str = bool_to_str(opcode_bits, OPCODE_BITS_CTR);
+    for (int i = 0; i < SHAMT_BITS_CTR; i++) {
+        if (shamt_bits[i] != 0) {
+            cout << "Shamt detected" << endl;
+            shamt_signal = true; // it is shift operation
+        }
+    }
     if (opcode_str == RTYPE_OP) {
         cout << "RType detected" << endl;
         reg_dest = true;
@@ -65,6 +75,10 @@ bool Control::getMemRead() {
 
 bool Control::getMemToReg() {
     return this->mem_to_reg;
+}
+
+bool Control::getShamtSignal() {
+    return this->shamt_signal;
 }
 
 /**
