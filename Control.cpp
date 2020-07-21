@@ -16,6 +16,26 @@ Control::Control(string opcode, string shamtcode, string functioncode) {
     initSignal();
 }
 
+void Control::init(string opcode, string shamtcode, string functioncode) {
+    shamt_signal = false;
+    this->function_code = functioncode;
+    if (opcode.length() != 6) {
+        cout << "OPCode its length should be 6." << endl;
+    }
+
+    for (int i = 0; i < OPCODE_BITS_CTR; i++) {
+        opcode_bits[i] = opcode.at(i) - '0';
+        if (i < SHAMT_BITS_CTR) {
+            shamt_bits[i] = shamtcode.at(i) - '0';
+        }
+    }
+
+    initSignal();
+}
+
+Control::Control() {
+}
+
 void Control::initSignal() {
     string opcode_str = bool_to_str(opcode_bits, OPCODE_BITS_CTR);
     for (int i = 0; i < SHAMT_BITS_CTR; i++) {
@@ -100,7 +120,7 @@ bool Control::getShamtRight() {
  * For converting some bits to idx value
  * binaries --> decimal
  */
-int Control::conv_bin_dec_idx(bool* bits, int& bitidx) {
+int Control::conv_bin_dec_idx(bool* bits, int bitidx) {
     int ret_val = 0;
 
     for (int i = 0; i < bitidx; i++) {

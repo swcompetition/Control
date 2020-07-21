@@ -32,6 +32,8 @@ private:
 
 public:
     Control(string opcode, string shamtcode, string functioncode);
+    Control();
+    void init(string opcode, string shamtcode, string functioncode);
     bool getBranch();
     bool getRegDest();
     bool getRegWrite();
@@ -42,7 +44,7 @@ public:
     bool getMemToReg();
     bool getShamtSignal();
     bool getShamtRight();
-    int conv_bin_dec_idx(bool* bits, int& bitidx);
+    int conv_bin_dec_idx(bool* bits, int bitidx);
     void conv_dec_to_bin(int target, bool return_value[]);
     string bool_to_str(bool* array, int size);
 };
