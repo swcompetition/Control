@@ -28,7 +28,6 @@ private:
     bool mem_to_reg;
     bool shamt_signal;
     bool shamt_right;
-    string bool_to_str(bool* array, int size);
     void initSignal();
 
 public:
@@ -45,4 +44,5 @@ public:
     bool getShamtRight();
     int conv_bin_dec_idx(bool* bits, int& bitidx);
     void conv_dec_to_bin(int target, bool return_value[]);
+    string bool_to_str(bool* array, int size);
 };
