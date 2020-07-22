@@ -36,6 +36,21 @@ void Control::init(string opcode, string shamtcode, string functioncode) {
 Control::Control() {
 }
 
+
+void Control::sign_extend(string bits, bool* ret_value) {
+    string tmp = "";
+    char to_extend = bits.at(0);
+    int extend_length = 32 - bits.length();
+    for (int i = 0; i < extend_length; i++) {
+        tmp += to_extend;
+    }
+    tmp += bits;
+    for (int i = 0; i < 32; i++) {
+        ret_value[i] = tmp.at(i) - '0';
+    }
+}
+
+
 void Control::initSignal() {
     string opcode_str = bool_to_str(opcode_bits, OPCODE_BITS_CTR);
     for (int i = 0; i < SHAMT_BITS_CTR; i++) {
