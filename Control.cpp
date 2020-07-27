@@ -80,6 +80,28 @@ void Control::initSignal() {
         is_branch = false;
         alu_op[0] = 1;
         alu_op[1] = 0;
+    } else if (opcode_str == LW_OP) {
+        cout << "LW Detected" << endl;
+        reg_dest = false;
+        alu_src = true;
+        mem_to_reg = true;
+        reg_write = true;
+        mem_read = true;
+        mem_write = false;
+        is_branch = false;
+        alu_op[0] = 0;
+        alu_op[1] = 0;
+    } else if (opcode_str == SW_OP) {
+        cout << "SW Detected" << endl;
+        reg_dest = false;
+        alu_src = true;
+        mem_to_reg = true;
+        reg_write = false;
+        mem_read = false;
+        mem_write = true;
+        is_branch = false;
+        alu_op[0] = 0;
+        alu_op[1] = 0;
     }
 }
 
