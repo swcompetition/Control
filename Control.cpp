@@ -82,6 +82,7 @@ void Control::initSignal() {
         alu_op[1] = 0;
     } else if (opcode_str == LW_OP) {
         cout << "LW Detected" << endl;
+        shamt_signal = false;
         reg_dest = false;
         alu_src = true;
         mem_to_reg = true;
@@ -93,9 +94,10 @@ void Control::initSignal() {
         alu_op[1] = 0;
     } else if (opcode_str == SW_OP) {
         cout << "SW Detected" << endl;
+        shamt_signal = false;
         reg_dest = false;
         alu_src = true;
-        mem_to_reg = true;
+        mem_to_reg = false;
         reg_write = false;
         mem_read = false;
         mem_write = true;
