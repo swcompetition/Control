@@ -64,7 +64,8 @@ void Control::initSignal() {
         if (function_code == "000010") {
             // Its shamt-right signal
             shamt_right = true;
-        } else {
+        }
+        else {
             shamt_right = false;
         }
     }
@@ -80,7 +81,8 @@ void Control::initSignal() {
         is_branch = false;
         alu_op[0] = 1;
         alu_op[1] = 0;
-    } else if (opcode_str == LW_OP) {
+    }
+    else if (opcode_str == LW_OP) {
         cout << "LW Detected" << endl;
         shamt_signal = false;
         reg_dest = false;
@@ -92,7 +94,8 @@ void Control::initSignal() {
         is_branch = false;
         alu_op[0] = 0;
         alu_op[1] = 0;
-    } else if (opcode_str == SW_OP) {
+    }
+    else if (opcode_str == SW_OP) {
         cout << "SW Detected" << endl;
         shamt_signal = false;
         reg_dest = false;
@@ -113,6 +116,13 @@ string Control::bool_to_str(bool* array, int size) {
         tmp += (array[i] + '0');
     }
     return tmp;
+}
+
+void Control::str_to_bool(string s, int size, bool* arr)
+{
+    for (int i = 0; i < size; i++) {
+        arr[i] = s.at(i) - '0';
+    }
 }
 
 bool Control::getBranch() {
@@ -184,7 +194,8 @@ void Control::conv_dec_to_bin(int target, bool return_value[]) {
     for (int i = 0; i < max_reg; i++) {
         if (i < max_reg - tmp_str.length()) {
             return_value[i] = 0;
-        } else {
+        }
+        else {
             return_value[i] = tmp_str.at(str_iter--) - '0';
         }
     }

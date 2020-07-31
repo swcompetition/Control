@@ -48,4 +48,5 @@ public:
     int conv_bin_dec_idx(bool* bits, int bitidx);
     void conv_dec_to_bin(int target, bool return_value[]);
     string bool_to_str(bool* array, int size);
+    void str_to_bool(string s, int size, bool* arr);
 };
